@@ -1,17 +1,21 @@
----
-title: redq
----
+# RedQ: A Distributed Background Task Queue for Python, powered by Redis
 
-[![image](https://img.shields.io/pypi/v/redq.svg)](https://pypi.python.org/pypi/redq)
+> It simplifies asynchronous processing by allowing you to offload time-consuming tasks to worker processes, improving application responsiveness and performance.
 
-[![image](https://img.shields.io/travis/yusufadell/redq.svg)](https://travis-ci.com/yusufadell/redq)
+**Features:**
 
-[![Documentation Status](https://readthedocs.org/projects/redq/badge/?version=latest)](https://redq.readthedocs.io/en/latest/?version=latest)
+* **Simple API:** Easy to enqueue and process tasks with a straightforward interface.
+* **Reliable Task Processing:** Ensures tasks are processed exactly once, even in case of failures.
+* **Scalable:** Supports distributing tasks across multiple worker processes for improved throughput.
+* **Lightweight:** Minimal dependencies and low overhead.
+* **Powered by Redis:** Leverages the speed and efficiency of Redis for message queuing.
 
-Distributed background task queue for Python, powered by Redis protocol.
+**Advanced Features:**
 
-- Free software: GNU General Public License v3
-- Documentation: <https://redq.readthedocs.io>.
+* **Task Prioritization:** Assign priorities to tasks to control their processing order.
+* **Delayed Tasks:** Schedule tasks to run at a specific time in the future.
+* **Error Handling:** Configure error handling and retry mechanisms for failed tasks.
+* **Custom Serialization:** Use custom serialization methods for task arguments.
 
 ## Example
 
@@ -68,6 +72,22 @@ Distributed background task queue for Python, powered by Redis protocol.
         # add 1 plus 1 on a worker somewhere, running on the default lowest priority queue
         anothertask.delay()
 ```
+
+**Running Workers:**
+
+To process tasks, you need to run a worker process. This can be done from the command line:
+
+```bash
+redq-worker --redis-host localhost --redis-port 6379 --redis-db 0
+```
+
+**Configuration:**
+
+RedQ can be configured using environment variables or by passing arguments to the `RedQ` constructor:
+
+* `REDIS_HOST`: Redis host address (default: localhost)
+* `REDIS_PORT`: Redis port (default: 6379)
+* `REDIS_DB`: Redis database number (default: 0)
 
 ## Credits
 
