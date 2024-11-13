@@ -11,7 +11,7 @@ from .serializer import serialize
 # from croniter import croniter
 
 
-log = logging.getLogger("espeq")
+log = logging.getLogger("redq")
 
 
 @dataclass
@@ -67,20 +67,20 @@ class CronTask:
 
 class Scheduler:
     __slots__ = [
-        "espeq",
+        "redq",
         "schedules",
     ]
 
-    def __init__(self, espeq=None, foreground=False):
-        self.espeq = espeq
+    def __init__(self, redq=None, foreground=False):
+        self.redq = redq
 
-        if len(self.espeq.schedules) == 0:
+        if len(self.redq.schedules) == 0:
             return "No scheduled tasks found."
 
         self.schedules = []
-        for schedule in self.espeq.schedules:
+        for schedule in self.redq.schedules:
             self.schedules.append(
-                CronTask.create(schedule, queues_by_name=self.espeq.queues_by_name)
+                CronTask.create(schedule, queues_by_name=self.redq.queues_by_name)
             )
 
         if foreground:
@@ -97,14 +97,14 @@ class Scheduler:
         while True:
             if len(upcoming_tasks) > 0:
                 for cron_task in upcoming_tasks:
-                    task = self.espeq.tasks[cron_task.task_name]
+                    task = self.redq.tasks[cron_task.task_name]
                     if cron_task.queue_name:
-                        queue = self.espeq.queues_by_name[cron_task.queue_name]
+                        queue = self.redq.queues_by_name[cron_task.queue_name]
                     elif task.queue:
                         queue = task.queue
                     else:
-                        queue = self.espeq.queues[-1]
-                    self.espeq.broker.lpush(queue.broker_key, cron_task.payload)
+                        queue = self.redq.queues[-1]
+                    self.redq.broker.lpush(queue.broker_key, cron_task.payload)
 
             upcoming_tasks = []
             crons = []

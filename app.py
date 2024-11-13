@@ -4,9 +4,9 @@ from pathlib import Path
 _ = Path(__name__).resolve().parent
 sys.path.append(_)
 
-from espeq import CronTask, EspeQ, Queue
+from redq import CronTask, redq, Queue
 
-espeq = EspeQ(
+redq = redq(
     queues=[
         (0, "a-high-priority-queue"),
         (1, "a-medium-priority-queue"),
@@ -39,12 +39,12 @@ schedules = (
 )
 
 
-@espeq.task(queue="medium-priority-queue")
+@redq.task(queue="medium-priority-queue")
 def mytask(x, y):
     print(x + y)
 
 
-@espeq.task
+@redq.task
 def anothertask():
     print("hello world")
 

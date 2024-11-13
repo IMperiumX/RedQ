@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-"""Tests for `espeq` package."""
+"""Tests for `redq` package."""
 
 import pytest
 
 from click.testing import CliRunner
 
-from espeq import espeq
-from espeq import cli
+from redq import redq
+from redq import cli
 
 
 @pytest.fixture
@@ -31,7 +31,7 @@ def test_command_line_interface():
     runner = CliRunner()
     result = runner.invoke(cli.main)
     assert result.exit_code == 0
-    assert 'espeq.cli.main' in result.output
+    assert 'redq.cli.main' in result.output
     help_result = runner.invoke(cli.main, ['--help'])
     assert help_result.exit_code == 0
     assert '--help  Show this message and exit.' in help_result.output

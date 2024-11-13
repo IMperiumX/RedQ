@@ -1,1 +1,1 @@
-"""Unit test package for espeq."""
+"""Unit test package for redq."""

@@ -1,4 +1,4 @@
-* EspeQ version:
+* redq version:
 * Python version:
 * Operating System:
 

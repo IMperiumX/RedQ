@@ -1,25 +1,25 @@
 ---
-title: EspeQ
+title: redq
 ---
 
-[![image](https://img.shields.io/pypi/v/espeq.svg)](https://pypi.python.org/pypi/espeq)
+[![image](https://img.shields.io/pypi/v/redq.svg)](https://pypi.python.org/pypi/redq)
 
-[![image](https://img.shields.io/travis/yusufadell/espeq.svg)](https://travis-ci.com/yusufadell/espeq)
+[![image](https://img.shields.io/travis/yusufadell/redq.svg)](https://travis-ci.com/yusufadell/redq)
 
-[![Documentation Status](https://readthedocs.org/projects/espeq/badge/?version=latest)](https://espeq.readthedocs.io/en/latest/?version=latest)
+[![Documentation Status](https://readthedocs.org/projects/redq/badge/?version=latest)](https://redq.readthedocs.io/en/latest/?version=latest)
 
 Distributed background task queue for Python, powered by Redis protocol.
 
 - Free software: GNU General Public License v3
-- Documentation: <https://espeq.readthedocs.io>.
+- Documentation: <https://redq.readthedocs.io>.
 
 ## Example
 
 ```python
 
-    from espeq import CronTask, EspeQ, Queue
+    from redq import CronTask, redq, Queue
 
-    espeq = EspeQ(
+    redq = redq(
         queues=[
             (0, "a-high-priority-queue"),
             (1, "a-medium-priority-queue"),
@@ -52,12 +52,12 @@ Distributed background task queue for Python, powered by Redis protocol.
     )
 
 
-    @espeq.task(queue="medium-priority-queue")
+    @redq.task(queue="medium-priority-queue")
     def mytask(x, y):
         print(x + y)
 
 
-    @espeq.task
+    @redq.task
     def anothertask():
         print("hello world")
 

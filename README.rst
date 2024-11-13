@@ -1,16 +1,16 @@
 =====
-EspeQ
+redq
 =====
 
 
-.. image:: https://img.shields.io/pypi/v/espeq.svg
-        :target: https://pypi.python.org/pypi/espeq
+.. image:: https://img.shields.io/pypi/v/redq.svg
+        :target: https://pypi.python.org/pypi/redq
 
-.. image:: https://img.shields.io/travis/yusufadell/espeq.svg
-        :target: https://travis-ci.com/yusufadell/espeq
+.. image:: https://img.shields.io/travis/yusufadell/redq.svg
+        :target: https://travis-ci.com/yusufadell/redq
 
-.. image:: https://readthedocs.org/projects/espeq/badge/?version=latest
-        :target: https://espeq.readthedocs.io/en/latest/?version=latest
+.. image:: https://readthedocs.org/projects/redq/badge/?version=latest
+        :target: https://redq.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
 
@@ -20,15 +20,15 @@ Distributed background task queue for Python, powered by Redis protocol.
 
 
 * Free software: GNU General Public License v3
-* Documentation: https://espeq.readthedocs.io.
+* Documentation: https://redq.readthedocs.io.
 
 ## Example
 
 ..  code-block:: python
     :caption: queue tasks passed to broker with delayed execution base on priority
-    from espeq import CronTask, EspeQ, Queue
+    from redq import CronTask, redq, Queue
 
-    espeq = EspeQ(
+    redq = redq(
         queues=[
             (0, "a-high-priority-queue"),
             (1, "a-medium-priority-queue"),
@@ -61,12 +61,12 @@ Distributed background task queue for Python, powered by Redis protocol.
     )
 
 
-    @espeq.task(queue="medium-priority-queue")
+    @redq.task(queue="medium-priority-queue")
     def mytask(x, y):
         print(x + y)
 
 
-    @espeq.task
+    @redq.task
     def anothertask():
         print("hello world")
 

@@ -6,8 +6,8 @@ def import_app(app):
         sep=".", maxsplit=1
     )  # math.sin => ['math', 'sin']
     module = import_module(module_path)  # eq to import math
-    espeq = getattr(module, class_name)
-    return espeq  # callable from module, it could be a function like sin()
+    redq = getattr(module, class_name)
+    return redq  # callable from module, it could be a function like sin()
 
 
 def inspect(app):

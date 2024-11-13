@@ -1,4 +1,4 @@
-Welcome to EspeQ's documentation!
+Welcome to redq's documentation!
 ======================================
 
 .. toctree::

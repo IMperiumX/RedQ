@@ -9,13 +9,13 @@ class Task:
     __slots__ = [
         "name",
         "fn",
-        "espeq",
+        "redq",
         "queue",
     ]
 
-    def __init__(self, fn=None, espeq=None, queue=None):
+    def __init__(self, fn=None, redq=None, queue=None):
         self.name = fn.__name__
-        self.espeq = espeq
+        self.redq = redq
         if queue:
             self.queue = self._create_queue(queue)
         else:
@@ -47,11 +47,11 @@ class Task:
         }
         payload = serialize(payload)
         if eta:
-            self.espeq.broker.zadd(
-                self.espeq.eta_task_key, {payload: time.time()}, nx=True
+            self.redq.broker.zadd(
+                self.redq.eta_task_key, {payload: time.time()}, nx=True
             )
 
-        self.espeq.broker.rpush(queue_broker_key, payload)
+        self.redq.broker.rpush(queue_broker_key, payload)
 
     def broadcast(self, *args, **kwargs) -> int:
         """Run task in the background on all workers.
@@ -70,10 +70,10 @@ class Task:
             "kwargs": kwargs,
         }
         payload = serialize(payload)
-        return self.espeq.broker.publish(self.espeq.broadcast_key, payload)
+        return self.redq.broker.publish(self.redq.broadcast_key, payload)
 
     def _create_queue(self, queue):
-        return Queue.create(queue, queues_by_name=self.espeq.queues_by_name)
+        return Queue.create(queue, queues_by_name=self.redq.queues_by_name)
 
     def _validate_queue(self, queue):
         if queue:
@@ -82,5 +82,5 @@ class Task:
             if self.queue:
                 queue = self.queue
             else:
-                queue = self.espeq.queues[-1]
+                queue = self.redq.queues[-1]
         return queue.name, queue.broker_key

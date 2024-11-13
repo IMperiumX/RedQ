@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use EspeQ in a project::
+To use redq in a project::
 
-    import espeq
+    import redq

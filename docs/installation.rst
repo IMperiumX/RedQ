@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install EspeQ, run this command in your terminal:
+To install redq, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install espeq
+    $ pip install redq
 
-This is the preferred method to install EspeQ, as it will always install the most recent stable release.
+This is the preferred method to install redq, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,19 +26,19 @@ you through the process.
 From sources
 ------------
 
-The sources for EspeQ can be downloaded from the `Github repo`_.
+The sources for redq can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/yusufadell/espeq
+    $ git clone git://github.com/yusufadell/redq
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl -OJL https://github.com/yusufadell/espeq/tarball/master
+    $ curl -OJL https://github.com/yusufadell/redq/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/yusufadell/espeq
-.. _tarball: https://github.com/yusufadell/espeq/tarball/master
+.. _Github repo: https://github.com/yusufadell/redq
+.. _tarball: https://github.com/yusufadell/redq/tarball/master

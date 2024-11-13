@@ -1,4 +1,4 @@
-"""Top-level package for EspeQ."""
+"""Top-level package for redq."""
 
 __author__ = """Yusuf Adel"""
 __email__ = "yusufadell.dev@gmail.com"
@@ -14,19 +14,19 @@ from .scheduler import CronTask
 from .task import Task
 
 __all__ = [
-    "EspeQ",
+    "redq",
     "worker",
     "scheduler",
 ]
 
 
-class EspeQ:
+class redq:
     queues = []
     schedules = []
     queues_by_name = {}
     tasks = {}
-    eta_task_key = "espeq-eta"
-    broadcast_key = 'espeq-broadcast'
+    eta_task_key = "redq-eta"
+    broadcast_key = 'redq-broadcast'
     concurrency = 0
     exclude_queues = []
 
@@ -68,7 +68,7 @@ class EspeQ:
         def _task(f):
             t = Task(
                 fn=f,
-                espeq=self,
+                redq=self,
                 queue=queue,
             )
             if t.name in self.tasks:

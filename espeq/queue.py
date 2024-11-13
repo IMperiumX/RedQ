@@ -8,7 +8,7 @@ class Queue:
         "prefix",
     ]
 
-    def __init__(self, name=None, priority=0, prefix="EspeQ"):
+    def __init__(self, name=None, priority=0, prefix="redq"):
         self.name = name
         self.prefix = prefix
 
